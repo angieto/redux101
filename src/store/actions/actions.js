@@ -5,7 +5,6 @@ export const SUBTRACT = 'SUBTRACT';
 export const STORE_RESULT = 'STORE_RESULT';
 export const DELETE_RESULT = 'DELETE_RESULT';
 
-// for synchronous code, the function'll return an action
 export const increment = () => {
     return {
         type: INCREMENT
@@ -18,30 +17,38 @@ export const decrement = () => {
     };
 };
 
-export const add = (value) => {
+export const add = ( value ) => {
     return {
         type: ADD,
-        value: value
+        val: value
     };
 };
 
-export const subtract = (value) => {
+export const subtract = ( value ) => {
     return {
         type: SUBTRACT,
-        value: value
+        val: value
     };
 };
 
-export const storeResult = (result) => {
+export const saveResult = ( res ) => {
     return {
         type: STORE_RESULT,
-        result: result
+        result: res
     };
+}
+
+export const storeResult = ( res ) => {
+    return dispatch => {
+        setTimeout( () => {
+            dispatch(saveResult(res));
+        }, 2000 );
+    }
 };
 
-export const deleteResult = (id) => {
+export const deleteResult = ( resElId ) => {
     return {
         type: DELETE_RESULT,
-        id: id
+        resultElId: resElId
     };
 };
